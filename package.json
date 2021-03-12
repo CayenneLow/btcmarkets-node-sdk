@@ -15,10 +15,9 @@
     "module": "dist/btcmarkets-node-sdk.cjs.production.min",
     "typings": "dist/index.d.ts",
     "files": [
-        "src"
+        "dist"
     ],
     "scripts": {
-        "prepare": "tsc",
         "start": "tsdx watch --target node",
         "build": "tsdx build --target node",
         "test": "tsdx test",
