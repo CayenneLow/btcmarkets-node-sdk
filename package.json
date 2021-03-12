@@ -1,14 +1,13 @@
 {
-    "name": "btcmarkets-node-sdk",
-    "version": "0.1.6",
+    "name": "@cayennelow/btcmarkets-node-sdk",
+    "version": "0.1.13",
     "author": {
-        "name": "BTC Markets",
-        "email": "support@btcmarkets.net",
-        "url": "https://www.btcmarkets.net"
+        "name": "Low Khye Ean",
+        "email": "lowkhyeean@gmail.com"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/BTCMarkets/btcmarkets-node-sdk"
+        "url": "https://github.com/CayenneLow/btcmarkets-node-sdk"
     },
     "license": "MIT",
     "main": "dist/index.js",
@@ -18,6 +17,7 @@
         "dist"
     ],
     "scripts": {
+        "prepublishOnly": "tsdx build --target node",
         "start": "tsdx watch --target node",
         "build": "tsdx build --target node",
         "test": "tsdx test",
@@ -25,7 +25,6 @@
         "lint-fix": "tsdx lint --fix",
         "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\""
     },
-    "peerDependencies": {},
     "husky": {
         "hooks": {
             "pre-commit": "tsdx lint src"
@@ -44,8 +43,10 @@
         "typescript": "^3.5.2"
     },
     "dependencies": {
+        "@types/crypto-js": "^3.1.47",
         "axios": "^0.21.1",
-        "crypto": "^1.0.1",
+        "crypto-js": "3.3.0",
+        "events": "^3.3.0",
         "ws": "^7.2.0"
     }
 }

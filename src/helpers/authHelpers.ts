@@ -1,6 +1,7 @@
-import crypto from 'crypto';
 import { HttpMethods } from '../constants/HttpMethods';
 import { API_VERSION, SOCKET_SIGN_METHOD } from '../constants';
+
+let CryptoJS = require('crypto-js');
 
 export const buildAuthHeaders = (method: HttpMethods, path: string, data: any, key: string, secret: string) => {
     const now = new Date().getTime();
@@ -42,8 +43,11 @@ export const generateSocketMessage = (timespan: number): string => {
 };
 
 export const signMessage = (secret: string, message: string) => {
-    const buffer = Buffer.from(secret, 'base64');
-    const hmac = crypto.createHmac('sha512', buffer);
-    const signature = hmac.update(message).digest('base64');
+    const secret_buffer = CryptoJS.enc.Base64.parse(secret);
+    const hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA512, secret_buffer);
+    const signature = hmac
+        .update(message)
+        .finalize()
+        .toString(CryptoJS.enc.Base64);
     return signature;
 };
