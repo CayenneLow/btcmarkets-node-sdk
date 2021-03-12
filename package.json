@@ -18,7 +18,7 @@
         "src"
     ],
     "scripts": {
-        "prepare": "tsdx build --target node",
+        "prepare": "tsc",
         "start": "tsdx watch --target node",
         "build": "tsdx build --target node",
         "test": "tsdx test",
