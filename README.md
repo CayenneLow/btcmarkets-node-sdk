@@ -1,3 +1,13 @@
+# This is a fork that was made to provide React Native compatibility
+## Changes made for React Native compatibility
+- Replaced `crypto` to `crypto-js@3.3.0`
+  - Rewrote `authHelpers.ts:signMessage` as a result
+- Installed `events`
+- Added `"outDir":"dist"` to `tsconfig.json`
+- Replaced `"rootDir": "./"` to `"rootDir": "./src"` in `tsconfig.json`
+- Added `"prepublishOnly": "tsdx build --target node"` to `package.json` scripts
+- Changed `src` under `files` to `dist` in `package.json`
+- Published under `@cayennelow/btcmarkets-node-sdk`
 # BTC Markets Node SDK
 
 
@@ -8,11 +18,11 @@ A complete Node.js wrapper for the BTC Markets API.
 ### Installation
 Install with npm
 ```
-npm install btcmarkets-node-sdk
+npm install @cayennelow/btcmarkets-node-sdk
 ```
 Install with yarn
 ```
-yarn add btcmarkets-node-sdk
+yarn add @cayennelow/btcmarkets-node-sdk
 ```
 
 ### Getting started
