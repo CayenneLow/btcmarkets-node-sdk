@@ -11,9 +11,9 @@
         "url": "https://github.com/BTCMarkets/btcmarkets-node-sdk"
     },
     "license": "MIT",
-    "main": "src/index.js",
-    "module": "src/btcmarkets-node-sdk.cjs.production.min",
-    "typings": "src/index.d.ts",
+    "main": "dist/index.js",
+    "module": "dist/btcmarkets-node-sdk.cjs.production.min",
+    "typings": "dist/index.d.ts",
     "files": [
         "src"
     ],
