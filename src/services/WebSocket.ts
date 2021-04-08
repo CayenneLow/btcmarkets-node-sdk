@@ -1,7 +1,6 @@
 import config from '../config';
 import { IClientConfig } from '../types/Client';
 import { SOCKET_URL, SOCKET_VERSION } from '../constants';
-import WebSocket from 'ws';
 import { buildSocketHeaders } from '../helpers/authHelpers';
 import {
     ISocketRequest,
