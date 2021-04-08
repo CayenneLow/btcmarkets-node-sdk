@@ -7,6 +7,7 @@
 - Replaced `"rootDir": "./"` to `"rootDir": "./src"` in `tsconfig.json`
 - Added `"prepublishOnly": "tsdx build --target node"` to `package.json` scripts
 - Changed `src` under `files` to `dist` in `package.json`
+- Removed `ws` library as React Native uses native WebSocket library instead of the node third-party one
 - Published under `@cayennelow/btcmarkets-node-sdk`
 # BTC Markets Node SDK
 

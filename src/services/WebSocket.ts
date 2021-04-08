@@ -26,6 +26,7 @@ import { EventEmitter } from 'events';
 
 class WebSocketClient extends EventEmitter {
     private config: IClientConfig;
+    // @ts-ignore
     private ws: WebSocket | undefined | null;
     private headers: ISocketRequest | IPublicSocketRequest;
 
@@ -45,6 +46,7 @@ class WebSocketClient extends EventEmitter {
     }
 
     public subscribe(request: ISubscriptionRequest) {
+        // @ts-ignore
         if (this.ws && this.ws.readyState === WebSocket.OPEN) {
             this.ws.close();
         }
@@ -55,8 +57,8 @@ class WebSocketClient extends EventEmitter {
     public onOpen() {
         this.emit('open');
     }
-    public onMessage(data: any) {
-        data = JSON.parse(data);
+    public onMessage(msg: any) {
+        const data = JSON.parse(msg.data);
 
         switch (data.messageType) {
             case 'orderChange':
@@ -131,6 +133,7 @@ class WebSocketClient extends EventEmitter {
 
     //reigon Methods
     public addSubscription(request: ISubscriptionRequest) {
+        // @ts-ignore
         if (this.ws && this.ws.readyState === WebSocket.OPEN) {
             const payload = {
                 ...this.headers,
@@ -149,6 +152,7 @@ class WebSocketClient extends EventEmitter {
     }
 
     public removeSubscription(request: ISubscriptionRequest) {
+        // @ts-ignore
         if (this.ws && this.ws.readyState === WebSocket.OPEN) {
             const payload = {
                 ...this.headers,
@@ -167,6 +171,7 @@ class WebSocketClient extends EventEmitter {
     }
 
     public close() {
+        // @ts-ignore
         if (this.ws && this.ws.readyState === WebSocket.OPEN) {
             this.ws.close();
         } else {
@@ -182,17 +187,19 @@ class WebSocketClient extends EventEmitter {
 
     //region Private Methods
     private connect(request: ISubscriptionRequest) {
+        // @ts-ignore
         if (this.ws && this.ws.readyState === WebSocket.OPEN) {
             this._subscribe(request);
         } else {
+            // @ts-ignore
             this.ws = new WebSocket(SOCKET_URL + SOCKET_VERSION);
-            this.ws.on('open', () => {
+            this.ws.onopen = () => {
                 this._subscribe(request);
                 this.onOpen();
-            });
-            this.ws.on('message', this.onMessage.bind(this));
-            this.ws.on('close', this.onClose.bind(this));
-            this.ws.on('error', this.onError.bind(this));
+            };
+            this.ws.onmessage = this.onMessage.bind(this);
+            this.ws.onclose = this.onClose.bind(this);
+            this.ws.onerror = this.onError.bind(this);
         }
     }
 
@@ -205,7 +212,7 @@ class WebSocketClient extends EventEmitter {
             });
             return;
         }
-
+        // @ts-ignore
         if (this.ws && this.ws.readyState === WebSocket.OPEN) {
             const payload = {
                 ...this.headers,
